@@ -16,30 +16,26 @@ export const handler = middy(
     const newItem = await createTodo(newTodo,jwtString);
     const logger = createLogger("createTodo");
 
-    //  if(newTodo.name.trim().length < 1) {
-    //   return {
-    //     statusCode: 400,
-    //     body: JSON.stringify({
-    //       error: 'Bad Request. The todo name cannot be empty'
-    //     })
-    //   }
-    // }else{
-    //   logger.info(`Created todo item for userId=${jwtString}, item=${JSON.stringify(newItem)}`);
-   
-    // }
-
-    logger.info(`Created todo item for userId=${jwtString}, item=${JSON.stringify(newItem)}`);
-   
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true
-      },
-      body: JSON.stringify({
-       item : newItem
-      })
-    }
+    if(newTodo.name.trim().length < 1) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: 'Bad Request. Todo name cannot be empty'
+        })
+      }
+    }else{
+      logger.info(`Created todo item for userId=${jwtString}, item=${JSON.stringify(newItem)}`);
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify({
+         item : newItem
+        })
+      }
+    } 
   }
 )
 
