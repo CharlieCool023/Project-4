@@ -1,15 +1,14 @@
-import * as uuid from 'uuid'
 import { TodosAccess } from '../dataLayer/todosAcess'
-import { createSignedUrl ,generateAttachmentUrl} from '../dataLayer/todoStorage';
+import { createSignedUrl ,generateAttachmentUrl} from '../dataLayer/todosStorage';
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 // import { createLogger } from '../utils/logger'
-
+import * as uuid from 'uuid'
 // import * as createError from 'http-errors'
 // import { parseUserId } from '../auth/utils'
 
-// const logger = createLogger('todos')
+// TODO: Implement businessLogic
 
 const todoAccess = new TodosAccess();
 
@@ -49,7 +48,7 @@ export async function UpdateTodo(
         return {
           statusCode: 404,
           body: JSON.stringify({
-            error: 'Todo Item does not exist'
+            error: 'Todo does not exist'
           })
         }
       }
@@ -60,7 +59,7 @@ export async function UpdateTodo(
       return {
         statusCode: 403,
         body: JSON.stringify({
-          error: 'User is not authorized'
+          error: 'User ' + userId + ' did not have the permission'
         })
       }
     }
@@ -82,7 +81,7 @@ export async function deleteTodo(
         return {
           statusCode: 404,
           body: JSON.stringify({
-            error: 'Todo Item does not exist'
+            error: 'Todo does not exist'
           })
         }
       }
@@ -92,7 +91,7 @@ export async function deleteTodo(
       return {
         statusCode: 403,
         body: JSON.stringify({
-          error: 'User is not authorized!'
+          error: 'User ' + userId + ' did not have the permission'
         })
       }
     }
@@ -112,7 +111,7 @@ export async function createAttachmentPresignedUrl(
       return {
         statusCode: 404,
         body: JSON.stringify({
-          error: 'Todo Item does not exist'
+          error: 'Todo does not exist'
         })
       }
     }
@@ -122,7 +121,7 @@ export async function createAttachmentPresignedUrl(
     return {
       statusCode: 403,
       body: JSON.stringify({
-        error: 'User ' + userId +'=' + todo.userId + ' is not authorized!',
+        error: 'User ' + userId +'=' + todo.userId + ' did not have the permission',
       })
     }
   }

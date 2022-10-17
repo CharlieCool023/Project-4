@@ -13,13 +13,14 @@ export const handler = middy(
     const todoId = event.pathParameters.todoId
     const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
     // TODO: Update a TODO item with the provided id using values in the "updatedTodo" object
+    
     const userId = getUserId(event);
 
     if(updatedTodo.name.trim().length < 1) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          error: 'Bad Request. Name cannot be empty'
+          error: 'ERROR: Bad Request. Todo name cannot be empty'
         })
       }
     }

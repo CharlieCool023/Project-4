@@ -12,12 +12,6 @@ const XAWS = AWSXRay.captureAWS(AWS)
 const logger = createLogger('TodosAccess')
 
 export class TodosAccess {
-  // createTodo(arg0: { todoId: any; userId: string; name: string; dueDate: string; createdAt: string; done: boolean; attachmentUrl: any; }): TodoItem | PromiseLike<TodoItem> {
-  //   throw new Error('Method not implemented.');
-  // }
-  getTodos(_userId: string): TodoItem[] | PromiseLike<TodoItem[]> {
-    throw new Error('Method not implemented.');
-  }
 
     constructor(
       private readonly docClient: DocumentClient = createDynamoDBClient(),
@@ -27,7 +21,7 @@ export class TodosAccess {
   
     async getAllTodos(userId : String): Promise<TodoItem[]> {
 
-      logger.info('Getting all todos for user: ' + userId)
+      logger.info('Fetching all todos for ' + userId)
 
       const result = await this.docClient.query({
         TableName: this.todosTable,
@@ -48,7 +42,7 @@ export class TodosAccess {
         Item: todo
       }).promise()
       
-      logger.info('Updating all todos for user: ', todo)
+      logger.info('Updating all todos for ', todo)
       return todo
     }
 

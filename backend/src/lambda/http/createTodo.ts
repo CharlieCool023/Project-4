@@ -18,7 +18,7 @@ export const handler = middy(
       return {
         statusCode: 400,
         body: JSON.stringify({
-          error: 'Bad Request. Name cannot be empty'
+          error: 'Bad Request. The todo name cannot be empty'
         })
       }
     }
