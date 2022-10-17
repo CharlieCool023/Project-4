@@ -131,7 +131,7 @@ export class TodosAccess {
   
   function createDynamoDBClient() {
     if (process.env.IS_OFFLINE) {
-      console.log('Creating a local DynamoDB instance')
+      console.log('Creating a Local DynamoDB instance')
       return new XAWS.DynamoDB.DocumentClient({
         region: 'localhost',
         endpoint: 'http://localhost:8000'

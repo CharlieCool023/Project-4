@@ -48,7 +48,7 @@ export async function UpdateTodo(
         return {
           statusCode: 404,
           body: JSON.stringify({
-            error: 'Todo does not exist'
+            error: 'Todo Item does not exist'
           })
         }
       }
@@ -59,7 +59,7 @@ export async function UpdateTodo(
       return {
         statusCode: 403,
         body: JSON.stringify({
-          error: 'User ' + userId + ' did not have the permission'
+          error: 'User ' + userId + ' is not authorized!'
         })
       }
     }
@@ -81,7 +81,7 @@ export async function deleteTodo(
         return {
           statusCode: 404,
           body: JSON.stringify({
-            error: 'Todo does not exist'
+            error: 'Todo Item does not exist'
           })
         }
       }
@@ -91,7 +91,7 @@ export async function deleteTodo(
       return {
         statusCode: 403,
         body: JSON.stringify({
-          error: 'User ' + userId + ' did not have the permission'
+          error: 'User ' + userId + ' is not authorized!'
         })
       }
     }
@@ -111,7 +111,7 @@ export async function createAttachmentPresignedUrl(
       return {
         statusCode: 404,
         body: JSON.stringify({
-          error: 'Todo does not exist'
+          error: 'Todo Item does not exist'
         })
       }
     }
@@ -121,7 +121,7 @@ export async function createAttachmentPresignedUrl(
     return {
       statusCode: 403,
       body: JSON.stringify({
-        error: 'User ' + userId +'=' + todo.userId + ' did not have the permission',
+        error: 'User ' + userId +'=' + todo.userId + ' is not authorized!',
       })
     }
   }
