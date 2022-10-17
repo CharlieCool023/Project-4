@@ -33,23 +33,6 @@ provider:
     # Enable API Gateway logs
     restApi: true
 
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - xray:GetServiceGraph
-            - xray:GetTraceGraph
-            - xray:GetTraceSummaries
-            - xray:GetSamplingRules
-            - xray:GetSamplingTargets
-            - xray:GetSamplingStatisticSummaries
-            - xray:BatchGetTraces
-            - xray:GetGroups
-            - xray:GetGroup
-            - xray:PutTelemetryRecords
-            - xray:PutTraceSegments
-          Resource: "*"
   
 functions:
   Auth:
