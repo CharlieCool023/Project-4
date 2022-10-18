@@ -1,40 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "todos",
+  "title": "group",
   "type": "object",
-  "minProperties": 1,
   "properties": {
     "name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "userId":{
+      "minLength":1,
       "type": "string"
     },
-    "todoId":{
+    "dueDate": {
       "type": "string"
-    },
-    "createdAt":{
-      "type": "string"
-    },
-    "dueDate":{
-      "type": "string"
-    },
-    "done":{
-      "type": "boolean"
-    },
-    "attachmentUrl?":{
-      "type": "string"
-    } 
+    }
   },
   "required": [
     "name",
-    "userId",
-    "todoId",
-    "createdAt",
     "dueDate"
-
-
   ],
   "additionalProperties": false
 }

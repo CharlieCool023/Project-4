@@ -4,7 +4,7 @@ import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
 import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
 import { getUserId } from '../utils';
-// import { createLogger } from '../../utils/logger';
+import { createLogger } from '../../utils/logger';
 import { createTodo } from '../../businessLogic/todos'
 
 export const handler = middy(
@@ -14,7 +14,7 @@ export const handler = middy(
 
     const jwtString = getUserId(event);
     const newItem = await createTodo(newTodo,jwtString);
-    //const logger = createLogger("createTodo");
+    const logger = createLogger("createTodo");
 
     if(newTodo.name.trim().length < 1) {
       return {
@@ -24,6 +24,7 @@ export const handler = middy(
         })
       }
     }else {
+    logger.info(`Created todo item for userId=${userId}, item=${JSON.stringify(item)}`);
       return {
         statusCode: 200,
         headers: {
