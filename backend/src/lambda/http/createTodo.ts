@@ -23,7 +23,8 @@ export const handler = middy(
           error: 'Bad Request. Todo name cannot be empty'
         })
       }
-    }else return {
+    }else {
+      return {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -32,7 +33,7 @@ export const handler = middy(
         body: JSON.stringify({
          item : newItem
         })
-      }
+      }}
   } 
 )
 
