@@ -24,7 +24,7 @@ export const handler = middy(
         })
       }
     }else {
-    logger.info(`Created todo item for userId=${userId}, item=${JSON.stringify(item)}`);
+    logger.info(`Created todo item for userId=${jwtString}, item=${JSON.stringify(newItem)}`);
       return {
         statusCode: 200,
         headers: {
